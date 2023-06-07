@@ -1,0 +1,293 @@
+/* header */
+#header {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 68px;
+  min-width: 280px;
+  background: #ffffff;
+  z-index: 100;
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-left: env(safe-area-inset-left);
+}
+
+.inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 22px 18px;
+}
+/* header */
+
+/* body */
+#body {
+  overflow: hidden;
+}
+/* body */
+
+/* footer */
+#footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 300;
+  background: #ffffff;
+  border-radius: 16px 16px 0 0;
+}
+
+.bottom-navbar {
+  display: block;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: #ffffff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -10px 40px 0 rgb(0 0 0 / 6%);
+  overflow: hidden;
+}
+.bottom-navbar > ul {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-navbar > ul > li {
+  display: table-cell;
+  width: 25%;
+  text-align: center;
+}
+
+.bottom-navbar > ul > li > a,
+.bottom-navbar > ul > li > button {
+  margin: 0 auto;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  flex-direction: column;
+  align-items: center;
+  color: #0f1f2e;
+}
+
+.footer-icon {
+  font-size: 13px;
+}
+/* footer */
+
+/* select option[value=""][disabled] {
+  display: none;
+} */
+
+a.router-link-exact-active > * {
+  color: #2a4cc8;
+  font-weight: 900;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.index-container {
+  background-image: url("../image/main_clock.png");
+  background-repeat: no-repeat;
+  background-position: 80% 50%;
+  background-color: #4d5dfa;
+  /* background-size: 70%; */
+}
+
+.index-container .title-area {
+  color: #ffffff;
+}
+.index-container .title-area .main-title {
+  font-weight: 800;
+  font-size: 60px;
+  letter-spacing: 3px;
+}
+
+.index-container .title-area .sub-title {
+  font-weight: 600;
+  font-size: 28px;
+  opacity: 0.5;
+}
+.index-container .button-area {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.index-container .button-area .loginBtn {
+  background: #ffffff;
+  color: #2a4cc8;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.index-container .button-area .signupBtn {
+  background: #b9ccff;
+  color: #2a4cc8;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.back-bar > * {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 41px;
+  /* identical to box height */
+
+  color: #222222;
+}
+
+.card,
+.card-header,
+.card-body,
+.card-footer {
+  border: 0px;
+}
+
+.main-header-bold {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+
+  color: #222222;
+}
+
+.main-header {
+  font-size: 24px;
+  line-height: 33px;
+
+  color: #222222;
+}
+
+.date-op,
+.month-op {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: -2px;
+
+  color: #d9dfea;
+}
+
+.date-bw,
+.month-bw {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: -2px;
+
+  color: #222222;
+}
+
+.realtime {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 59px;
+  /* identical to box height */
+
+  color: #222222;
+}
+
+.findmy-position {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #222222;
+}
+
+.attend-btn {
+  background: #4d5dfa;
+  border: 1px solid #b9ccff;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.attend-history-btn {
+  background-image: url("../image/phone_color.png");
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+  background-color: #ead5fa;
+  border-radius: 5px;
+  width: 100%;
+  color: #222222;
+}
+
+.attend-history-btn > p {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height, or 138% */
+
+  letter-spacing: -0.02em;
+
+  color: #222222;
+}
+
+.attend-history-btn > span {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  /* identical to box height, or 138% */
+
+  letter-spacing: -0.02em;
+
+  color: #222222;
+}
+
+.loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.worktime-txt {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 44px;
+
+  color: #424753;
+}
+
+.progress-bar {
+  background: #a1b8f4;
+}
+
+.workend-area > span {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height */
+}
+
+.workend-area > p {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 59px;
+  /* identical to box height */
+
+  color: #222222;
+}
