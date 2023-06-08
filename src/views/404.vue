@@ -1,4 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div>page is not found</div>
+  <div class="text-danger">Page Not Found (404)</div>
 </template>

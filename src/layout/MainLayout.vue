@@ -4,9 +4,7 @@ import FooterLayout from '~/layout/FooterLayout.vue'
 </script>
 
 <template>
-    <div>
-        <HeaderLayout/>
-        <router-view/>
-        <FooterLayout/>
-    </div>
+  <HeaderLayout />
+  <router-view />
+  <FooterLayout />
 </template>
