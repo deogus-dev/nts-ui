@@ -12,19 +12,18 @@ const instance = axios.create({
 const axiosModule = {
   instance,
   async api(options) {
-    console.log(options)
+    // API 요청 전처리
+    // code here
 
-    await instance(options)
+    // API call
+    try {
+      let response
+      response = await instance(options)
+      console.log('status', response.status)
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 }
-
-axios.interceptors.request.use(
-  (config) => {
-    console.log('axios interceptor1')
-  },
-  (error) => {
-    console.log('axios interceptor2')
-  }
-)
 
 export default axiosModule

@@ -5,7 +5,7 @@ import lib from '~/util/axiosModule'
 const userInfo = reactive({})
 
 const valid = () => {
-  if (!userInfo?.userId) {
+  if (!userInfo?.email) {
     alert('아이디를 입력해주세요')
     return false
   } else if (!userInfo?.userPw) {
@@ -17,14 +17,22 @@ const valid = () => {
 
 const login = () => {
   if (valid()) {
-    lib.api({
-      url: '/auth'
-    })
+    lib
+      .api({
+        url: '/auth',
+        data: {
+          email: userInfo.userId,
+          password: userInfo.password
+        }
+      })
+      .then((res) => {
+        console.log('res : ', res)
+      })
   }
 }
 </script>
 <template>
-  <input class="form-control" type="text" placeholder="ID" v-model="userInfo.userId" />
+  <input class="form-control" type="text" placeholder="ID" v-model="userInfo.email" />
   <input type="password" placeholder="PASSWORD" v-model="userInfo.userPw" />
   <button @click="login">Login</button>
 </template>
