@@ -21,7 +21,7 @@ const axiosModule = {
       response = await instance(options)
       console.log('status', response.status)
     } catch (error) {
-      console.log('error', error)
+      console.log('error', error.response.data)
     }
   }
 }
