@@ -1,7 +1,11 @@
 <script setup>
 import { reactive } from 'vue'
 import lib from '~/util/axiosModule'
+import { useAuthStore } from '~/stores/auth'
+import { useRouter } from 'vue-router'
 
+const authStore = useAuthStore()
+const router = useRouter()
 const userInfo = reactive({})
 
 const valid = () => {
@@ -21,18 +25,20 @@ const login = () => {
       .api({
         url: '/auth',
         data: {
-          email: userInfo.userId,
-          password: userInfo.password
+          email: userInfo.email,
+          password: userInfo.userPw
         }
       })
       .then((res) => {
-        console.log('res : ', res)
+        console.log('res = ', res)
+        authStore.saveToken(res)
+        router.push('/main')
       })
   }
 }
 </script>
 <template>
-  <input class="form-control" type="text" placeholder="ID" v-model="userInfo.email" />
+  <input type="text" placeholder="ID" v-model="userInfo.email" />
   <input type="password" placeholder="PASSWORD" v-model="userInfo.userPw" />
   <button @click="login">Login</button>
 </template>

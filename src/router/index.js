@@ -3,9 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import notFound from '~/views/404.vue'
 
 import auth from '~/router/auth'
+import cmn from '~/router/cmn'
 import exam from '~/router/exam'
 
-const routes = [...auth, ...exam]
+const routes = [...auth, ...cmn, ...exam]
 
 routes.push({
   path: '/:pathMatch(.*)*',
@@ -13,10 +14,11 @@ routes.push({
   // children: [
   //   {
   //     path: '',
-  //     component: notFound
+  //     component: () => import('~/views/404.vue')
   //   }
   // ]
 })
+
 const router = createRouter({
   history: createWebHistory(),
   routes
