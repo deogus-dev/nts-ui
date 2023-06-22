@@ -19,10 +19,14 @@ const axiosModule = {
   async api(options) {
     // API 요청 전처리(토큰)
 
-    // let settings
-
-    // settings.headers = {}
-    // settings.headers.Authorization = 'Bearer ' + useAuthStore().accessToken
+    let settings
+    settings.headers = {}
+    if (options.url !== '/auth' && options.url !== '/reissue') {
+      settings.headers.Authorization = 'Bearer ' + useAuthStore().accessToken
+    } else {
+      useAuthStore().clearToken()
+      delete settings?.headers?.Authorization
+    }
 
     // if(isLogin)
     _.merge(options, {

@@ -21,6 +21,11 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('refreshToken', refreshToken)
         this.refreshToken = refreshToken
       }
+    },
+    clearToken() {
+      localStorage.clear()
+      delete this.at
+      delete this.rt
     }
   },
   getters: {
