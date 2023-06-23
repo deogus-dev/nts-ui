@@ -2,30 +2,34 @@
 import { reactive } from 'vue'
 import lib from '~/util/axiosModule'
 
+const emit = defineEmits()
 var map, marker
 const position = reactive({})
 const circle = reactive([])
 
 const posCheck = () => {
-  circle.forEach((obj) => {
+  circle.some((obj) => {
     if (
       position.lng > obj.getBounds().ha &&
       position.lat > obj.getBounds().qa &&
       position.lng < obj.getBounds().oa &&
       position.lat < obj.getBounds().pa
     ) {
-      // this.$emit('setLocationInfo', {
-      //   circleIn: true,
-      //   locCode: obj.Eb.fillColor
-      // })
       console.log('in position')
-      return false
+
+      emit('setLocationInfo', {
+        circleIn: true,
+        locCode: obj.Eb.fillColor
+      })
+
+      return true
     } else {
-      // this.$emit('setLocationInfo', {
-      //   circleIn: false,
-      //   locCode: null
-      // })
       console.log('out of position')
+
+      emit('setLocationInfo', {
+        circleIn: false,
+        locCode: null
+      })
     }
   })
 }
@@ -62,25 +66,9 @@ const initMap = () => {
       circle.forEach((obj) => {
         obj.setMap(map)
       })
+
+      posCheck()
     })
-
-  //   const result = await this.$axios.get('/company-locations')
-  //   if (result.status === 200) {
-  //     result.data.forEach((obj) => {
-  //       this.circle.push(
-  //         new kakao.maps.Circle({
-  //           center: new kakao.maps.LatLng(obj.latitude, obj.longitude),
-  //           fillColor: obj.locationCode // kakao circle에 커스텀 데이터 삽입 위해 (String) fillColor 활용
-  //         })
-  //       )
-  //     })
-
-  //     this.circle.forEach((obj) => {
-  //       obj.setMap(this.map)
-  //     })
-
-  //     this.posCheck()
-  //   }
 
   map.setDraggable(true)
 
@@ -95,6 +83,8 @@ const initMap = () => {
 
     position.lat = latlng.getLat()
     position.lng = latlng.getLng()
+
+    posCheck()
   })
 }
 

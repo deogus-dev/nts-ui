@@ -3,8 +3,6 @@ import _ from 'lodash'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '~/stores/auth'
 
-const router = useRouter()
-
 const instance = axios.create({
   baseURL: '/api',
   headers: {
@@ -19,21 +17,17 @@ const axiosModule = {
   async api(options) {
     // API 요청 전처리(토큰)
 
-    let settings
-    settings.headers = {}
     if (options.url !== '/auth' && options.url !== '/reissue') {
-      settings.headers.Authorization = 'Bearer ' + useAuthStore().accessToken
+      _.merge(options, {
+        headers: {
+          Authorization: 'Bearer ' + useAuthStore().accessToken
+        }
+      })
     } else {
-      useAuthStore().clearToken()
-      delete settings?.headers?.Authorization
+      delete options?.headers?.Authorization
     }
 
-    // if(isLogin)
-    _.merge(options, {
-      headers: {
-        Authorization: 'Bearer ' + useAuthStore().accessToken
-      }
-    })
+    console.log('%c[options]', 'color: green', options)
 
     // API call
     try {
@@ -52,12 +46,14 @@ const axiosModule = {
           .api({
             url: '/reissue',
             data: {
+              accessToken: useAuthStore().accessToken,
               refreshToken: useAuthStore().refreshToken
             }
           })
           .then((res) => {
-            authStore.saveToken(res)
-            return axiosModule.api(options)
+            useAuthStore().saveToken(res)
+            console.log('[token res]', res)
+            // return axiosModule.api(options)
           })
       } else {
         console.log('[unknown error]', error)
