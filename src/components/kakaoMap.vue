@@ -1,11 +1,35 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, watch, onUnmounted } from 'vue'
 import lib from '~/util/axiosModule'
 
 const emit = defineEmits()
-var map, marker
-const position = reactive({})
+var map, marker, interval
 const circle = reactive([])
+
+const position = reactive({})
+watch(position, () => {
+  if (map) {
+    var latlng = new kakao.maps.LatLng(position.lat, position.lng)
+    map.setCenter(latlng)
+    marker.setPosition(latlng)
+    posCheck()
+  }
+})
+
+const getCurPos = () => {
+  if (navigator.geolocation) {
+    interval = navigator.geolocation.watchPosition(
+      (pos) => {
+        position.lat = pos.coords.latitude
+        position.lng = pos.coords.longitude
+      },
+      (err) => {},
+      {
+        enableHighAccuracy: false
+      }
+    )
+  }
+}
 
 const posCheck = () => {
   circle.some((obj) => {
@@ -102,7 +126,16 @@ const initMap = () => {
     // this.setCompBounds();
     initMap()
   }
+
+  if (!('geolocation' in navigator)) {
+    return
+  }
+  getCurPos()
 })()
+
+onUnmounted(() => {
+  navigator.geolocation.clearWatch(interval)
+})
 </script>
 
 <template>

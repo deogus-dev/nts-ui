@@ -20,6 +20,7 @@ const valid = () => {
 }
 
 const login = () => {
+  authStore.clearToken()
   if (valid()) {
     lib
       .api({

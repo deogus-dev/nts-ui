@@ -24,4 +24,11 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.path === '/') {
+    //login check
+  }
+  next()
+})
+
 export default router

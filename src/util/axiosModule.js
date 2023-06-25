@@ -17,7 +17,7 @@ const axiosModule = {
   async api(options) {
     // API 요청 전처리(토큰)
 
-    if (options.url !== '/auth' && options.url !== '/reissue') {
+    if (options.url !== '/auth') {
       _.merge(options, {
         headers: {
           Authorization: 'Bearer ' + useAuthStore().accessToken
@@ -32,6 +32,7 @@ const axiosModule = {
     // API call
     try {
       let response
+      console.log('%coptions!', 'background:red', options)
       response = await instance(options)
       return Promise.resolve(response.data)
     } catch (error) {
