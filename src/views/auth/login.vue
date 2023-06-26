@@ -3,25 +3,15 @@ import { reactive } from 'vue'
 import lib from '~/util/axiosModule'
 import { useAuthStore } from '~/stores/auth'
 import { useRouter } from 'vue-router'
+import valid from '~/util/validation'
 
 const authStore = useAuthStore()
 const router = useRouter()
 const userInfo = reactive({})
 
-const valid = () => {
-  if (!userInfo?.email) {
-    alert('아이디를 입력해주세요')
-    return false
-  } else if (!userInfo?.userPw) {
-    alert('비밀번호를 입력해주세요')
-    return false
-  }
-  return true
-}
-
 const login = () => {
   authStore.clearToken()
-  if (valid()) {
+  if (valid('email', userInfo?.email) && valid('password', userInfo?.userPw)) {
     lib
       .api({
         url: '/member',
@@ -31,7 +21,6 @@ const login = () => {
         }
       })
       .then((res) => {
-        console.log('res = ', res)
         authStore.saveToken(res)
         router.push('/main')
       })
