@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch, onUnmounted } from 'vue'
+import { reactive, watch, onMounted, onUnmounted } from 'vue'
 import lib from '~/util/axiosModule'
 
 const emit = defineEmits()
@@ -39,7 +39,7 @@ const posCheck = () => {
       position.lng < obj.getBounds().oa &&
       position.lat < obj.getBounds().pa
     ) {
-      console.log('in position')
+      console.log('in position [ %s ]', obj.Eb.fillColor)
 
       emit('setLocationInfo', {
         circleIn: true,
@@ -48,8 +48,6 @@ const posCheck = () => {
 
       return true
     } else {
-      console.log('out of position')
-
       emit('setLocationInfo', {
         circleIn: false,
         locCode: null
@@ -107,12 +105,10 @@ const initMap = () => {
 
     position.lat = latlng.getLat()
     position.lng = latlng.getLng()
-
-    posCheck()
   })
 }
 
-;(() => {
+onMounted(() => {
   if (!window.kakao || !window.kakao.maps) {
     const script = document.createElement('script')
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
@@ -123,19 +119,19 @@ const initMap = () => {
     })
     document.head.appendChild(script)
   } else {
-    // this.setCompBounds();
     initMap()
   }
+})
 
+onUnmounted(() => {
+  navigator.geolocation.clearWatch(interval)
+})
+;(() => {
   if (!('geolocation' in navigator)) {
     return
   }
   getCurPos()
 })()
-
-onUnmounted(() => {
-  navigator.geolocation.clearWatch(interval)
-})
 </script>
 
 <template>
