@@ -13,12 +13,12 @@ const valid = (type, target) => {
         return false
       }
 
-    case 'authCode':
-      //인증번호 6자리 체크
-      return true
-
     case 'password':
       //비밀번호 형식
+      return true
+
+    case 'authCode':
+      //인증번호 6자리 체크
       return true
   }
 
