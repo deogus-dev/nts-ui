@@ -24,7 +24,7 @@ const login = () => {
   if (valid()) {
     lib
       .api({
-        url: '/auth',
+        url: '/member',
         data: {
           email: userInfo.email,
           password: userInfo.userPw

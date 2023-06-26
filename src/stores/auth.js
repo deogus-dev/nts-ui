@@ -24,13 +24,13 @@ export const useAuthStore = defineStore('auth', {
     },
     clearToken() {
       localStorage.clear()
-      delete this.at
-      delete this.rt
+      delete this.accessToken
+      delete this.refreshToken
     }
   },
   getters: {
     getUserNm(state) {
-      return state.userNm
+      return state.name
     }
   }
 })
