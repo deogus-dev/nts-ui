@@ -45,6 +45,7 @@ const verifyCode = () => {
       .then((res) => {
         // 비밀번호 입력 창 노출
         // 다음 버튼 위치에 완료 버튼 삽입
+        // transition 사용하여 버튼 fade out,in 효과 추가
         // 기존 다음 버튼 클릭 시 signup2로 넘어가던 로직 변경
       })
   }
@@ -57,11 +58,14 @@ const verifyCode = () => {
   <p>본인 확인을 위해 이메일주소를 입력해주세요.</p>
 
   <label for="cBox">[필수] 본인 인증 이용약관 동의</label>
-  <input id="cBox" type="checkbox" />
+  <input id="cBox" type="checkbox" :disabled="isVerify" />
 
   <input type="email" placeholder="it1234@gsitm.com" v-model="email" :disabled="isVerify" />
   <button @click="generateCode">인증번호 발송</button>
   <input type="number" placeholder="인증코드를 입력해주세요" v-model="authCode" />
+
+  <input type="password" placeholder="비밀번호" v-model="authCode" />
+  <input type="password" placeholder="비밀번호 확인" v-model="authCode" />
 
   <p><button @click="verifyCode" :disabled="!isVerify">다음</button></p>
 </template>
