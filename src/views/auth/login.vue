@@ -11,7 +11,7 @@ const userInfo = reactive({})
 
 const login = () => {
   authStore.clearToken()
-  if (valid('email', userInfo?.email) && valid('password', userInfo?.userPw)) {
+  if (valid('email', userInfo?.email)) {
     lib
       .api({
         url: '/member',

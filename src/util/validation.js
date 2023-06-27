@@ -1,20 +1,19 @@
-import globalConstant from '~/util/globalConstant'
+import constants from '~/util/constants'
 
 var regx = {
-  email:
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  password: /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]+$/,
+  email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  password: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
   authCode: /^\d{6}$/
 }
 
 const valid = (type, target) => {
   if (!target) {
-    alert(globalConstant[type] + '을 입력해주세요')
+    alert(constants[type] + '을 입력해주세요')
     return false
   }
 
   if (!regx[type].test(target)) {
-    alert(globalConstant[type] + ' 형식이 올바르지 않습니다!')
+    alert(constants[type] + ' 형식이 올바르지 않습니다!')
     return false
   }
 
