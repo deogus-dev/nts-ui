@@ -22,6 +22,7 @@ const login = () => {
       })
       .then((res) => {
         authStore.saveToken(res)
+        authStore.saveMember(res)
         router.push('/main')
       })
   }

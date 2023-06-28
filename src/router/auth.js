@@ -11,13 +11,19 @@ const routes = [
       {
         // 앱 초기화면
         path: '',
-        component: index
+        component: index,
+        meta: {
+          chkLogin: true
+        }
       },
       {
         //로그인
         path: 'login',
         name: '로그인',
-        component: login
+        component: login,
+        meta: {
+          chkLogin: true
+        }
       },
       {
         // 회원가입

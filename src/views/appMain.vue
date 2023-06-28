@@ -1,10 +1,12 @@
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { reactive, computed } from 'vue'
 import moment from 'moment'
 import _ from 'lodash'
 import kakaoMap from '~/components/kakaoMap.vue'
 import lib from '~/util/axiosModule'
+import { useAuthStore } from '~/stores/auth'
 
+const store = useAuthStore()
 const attendInfo = reactive({})
 
 const locationInfo = reactive({})
@@ -56,7 +58,7 @@ const attend = () => {
     })
 }
 
-;(() => {
+;(async () => {
   getAttendInfo()
 })()
 </script>

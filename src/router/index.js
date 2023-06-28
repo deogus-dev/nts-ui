@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 
 import notFound from '~/views/404.vue'
 
@@ -25,8 +26,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/') {
-    //login check
+  const store = useAuthStore()
+  if (to.meta.chkLogin && store.isLogin()) {
+    router.push('/main')
   }
   next()
 })

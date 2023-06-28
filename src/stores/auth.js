@@ -11,8 +11,10 @@ export const useAuthStore = defineStore('auth', {
       this.accessToken = at
       this.refreshToken = rt
     },
-    saveToken({ accessToken, refreshToken }) {
-      console.log('save token', accessToken, refreshToken)
+    saveToken({ grantType, accessToken, refreshToken }) {
+      if (grantType) {
+        this.grantType = grantType
+      }
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken)
         this.accessToken = accessToken
@@ -22,15 +24,25 @@ export const useAuthStore = defineStore('auth', {
         this.refreshToken = refreshToken
       }
     },
+    saveMember({ id, name }) {
+      this.member = {
+        id: id,
+        name: name
+      }
+    },
     clearToken() {
       localStorage.clear()
       delete this.accessToken
       delete this.refreshToken
+    },
+    isLogin() {
+      if (this.at) return true
+      else return false
     }
   },
   getters: {
     getUserNm(state) {
-      return state.name
+      return state.member.name
     }
   }
 })

@@ -56,7 +56,7 @@ const posCheck = () => {
   })
 }
 
-const initMap = () => {
+const initMap = async () => {
   var container = document.getElementById('map')
   var options = {
     center: new kakao.maps.LatLng(37.51082, 127.02928),
@@ -70,7 +70,7 @@ const initMap = () => {
 
   marker.setMap(map)
 
-  lib
+  await lib
     .api({
       url: '/company-locations',
       method: 'get'
