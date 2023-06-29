@@ -28,52 +28,74 @@ const refreshToken = async () => {
     const response = await axios.post('/api/member/reissue', {
       refreshToken: useAuthStore().refreshToken
     })
-    isTokenRefreshing = false
+
     useAuthStore().saveToken(response.data)
-    return Promise.resolve()
+
+    return Promise.resolve(response.data.accessToken)
   } catch (error) {
     console.log('reissue failed')
     return Promise.reject(error)
   }
 }
 
-const axiosModule = {
-  instance,
-  async api(options) {
-    if (!options.url.startsWith('/member')) {
-      _.merge(options, {
+instance.interceptors.request.use(
+  (config) => {
+    if (!config.url.startsWith('/member')) {
+      _.merge(config, {
         headers: {
           Authorization: 'Bearer ' + useAuthStore().accessToken
         }
       })
     } else {
-      delete options?.headers?.Authorization
+      delete options.headers?.Authorization
     }
 
-    try {
-      let response
-      response = await instance(options)
-      return Promise.resolve(response.data)
-    } catch (error) {
-      const status = error.response.status
-      if (status === 401) {
-        const retryOriginalRequest = new Promise((resolve) => {
-          addRefreshSubscriber((accessToken) => {
-            options.headers.Authorization = 'Bearer ' + accessToken
-            resolve(axiosModule.api(options))
-          })
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+
+instance.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  async (error) => {
+    const originalRequest = error.config
+
+    if (error.response.data.status === 401) {
+      const retryOriginalRequest = new Promise((resolve) => {
+        addRefreshSubscriber((accessToken) => {
+          originalRequest.headers.Authorization = 'Bearer ' + accessToken
+          resolve(axios(originalRequest))
         })
+      })
 
-        if (!isTokenRefreshing) {
-          isTokenRefreshing = true
-
-          const result = await refreshToken()
-          isTokenRefreshing = false
-
-          onTokenRefreshed(result.data.accessToken)
-        }
-        return retryOriginalRequest
+      if (!isTokenRefreshing) {
+        isTokenRefreshing = true
+        // 토큰 재발급 요청
+        const newAccessToken = await refreshToken()
+        isTokenRefreshing = false
+        onTokenRefreshed(newAccessToken)
       }
+
+      return retryOriginalRequest
+    } else {
+      Promise.reject(error)
+    }
+    return Promise.reject(error)
+  }
+)
+
+const axiosModule = {
+  instance,
+  async api(options) {
+    try {
+      let response = await instance(options)
+      return Promise.resolve(response.data)
+    } catch {
+      console.log('error occurred')
     }
   }
 }

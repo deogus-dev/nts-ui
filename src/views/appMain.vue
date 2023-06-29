@@ -21,6 +21,7 @@ const getAttendInfo = () => {
       method: 'get'
     })
     .then((res) => {
+      console.log('appMain res', res)
       _.merge(attendInfo, res)
     })
 }

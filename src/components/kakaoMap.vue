@@ -70,12 +70,13 @@ const initMap = async () => {
 
   marker.setMap(map)
 
-  await lib
+  lib
     .api({
       url: '/company-locations',
       method: 'get'
     })
     .then((res) => {
+      console.log('kakaomap res', res)
       res.forEach((obj) => {
         circle.push(
           new kakao.maps.Circle({
