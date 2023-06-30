@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, computed } from 'vue'
+import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import moment from 'moment'
 import _ from 'lodash'
 import kakaoMap from '~/components/kakaoMap.vue'
@@ -8,6 +8,11 @@ import { useAuthStore } from '~/stores/auth'
 
 const store = useAuthStore()
 const attendInfo = reactive({})
+
+const currentTime = ref(moment().format('YYYY-MM-DD HH:mm:ss'))
+let timer = setInterval(() => {
+  currentTime.value = moment().format('YYYY-MM-DD HH:mm:ss')
+}, 1000)
 
 const locationInfo = reactive({})
 const setLocationInfo = (param) => {
@@ -21,7 +26,6 @@ const getAttendInfo = () => {
       method: 'get'
     })
     .then((res) => {
-      console.log('appMain res', res)
       _.merge(attendInfo, res)
     })
 }
@@ -29,48 +33,48 @@ const getAttendInfo = () => {
 const attendStatus = computed(() => {
   //pm 상황 고려할 경우 추가
   //   if (!yesterday.out_time && yesterday.attend_code === 'AT08') {
-  //     return 'out'
+  //     return 'off'
   //   }
 
   if (attendInfo.inTime && attendInfo.outTime) {
     return { key: 'end', txt: '근무종료' }
   }
 
-  if (!attendInfo.inTime) return { key: 'in', txt: '출근' }
-  else return { key: 'out', txt: '퇴근' }
+  if (!attendInfo.inTime) return { key: 'on', txt: '출근' }
+  else return { key: 'off', txt: '퇴근' }
 })
 
 const attend = () => {
-  let url
-  if (attendStatus.value.key === 'in') url = '/attend/on'
-  else url = '/attend/off'
-
   lib
     .api({
-      url: url,
+      url: `/attend/${attendStatus.value.key}`,
       data: {
         locationCode: 'LC01',
         attendCode: 'AT01'
       }
     })
-    .then((res) => {
-      getAttendInfo()
+    .then(() => {
       alert(attendStatus.value.txt + '이 완료되었습니다.')
+      getAttendInfo()
     })
 }
 
-;(async () => {
+onUnmounted(() => {
+  clearInterval(timer)
+})
+;(() => {
   getAttendInfo()
 })()
 </script>
 
 <template>
-  <p>출,퇴근 버튼 상태 : {{ attendStatus.key }}</p>
-  <p>출,퇴근 버튼 상태 : {{ attendInfo }}</p>
-  <p>위치 정보 : {{ locationInfo }}</p>
+  <!-- <p>{{ store.getUserNm }}</p> -->
+  <p>현재시간 : {{ currentTime }}</p>
+  <p>출근시간 : {{ $filters.timeFormat(attendInfo.inTime) }}</p>
+  <p>퇴근시간 : {{ $filters.timeFormat(attendInfo.outTime) }}</p>
   <button
     @click="attend"
-    :disabled="attendStatus.key === 'end' || (attendStatus.key === 'in' && !locationInfo.circleIn)"
+    :disabled="attendStatus.key === 'end' || (attendStatus.key === 'on' && !locationInfo.circleIn)"
   >
     {{ attendStatus.txt }}
   </button>

@@ -13,6 +13,13 @@ app.use(createPinia())
 app.use(router)
 app.mount('#app')
 
+app.config.globalProperties.$filters = {
+  timeFormat(value) {
+    if (value) return value.substring(0, 2) + ':' + value.substring(2, 4)
+    else return '-'
+  }
+}
+
 // 앱 초기 구동시 localstorage에서 at,rt를 가져와서 store에 세팅
 const authStore = useAuthStore()
 authStore.loadToken()

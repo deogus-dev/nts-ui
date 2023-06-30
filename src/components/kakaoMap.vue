@@ -76,7 +76,6 @@ const initMap = async () => {
       method: 'get'
     })
     .then((res) => {
-      console.log('kakaomap res', res)
       res.forEach((obj) => {
         circle.push(
           new kakao.maps.Circle({

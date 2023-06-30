@@ -1,5 +1,5 @@
-import exportExcel from '~/views/exportExcel.vue'
-import exportExcelLib from '~/views/exportExcelLib.vue'
+import exportExcel from '~/views/exam/exportExcel.vue'
+import exportExcelLib from '~/views/exam/exportExcelLib.vue'
 
 const routes = [
   {
