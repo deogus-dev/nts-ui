@@ -22,5 +22,8 @@ export default defineConfig({
       '~': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  lintOnSave: false
+  lintOnSave: false,
+  build: {
+    outDir: 'dist'
+  }
 })
