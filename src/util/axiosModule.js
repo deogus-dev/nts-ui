@@ -47,7 +47,7 @@ instance.interceptors.request.use(
         }
       })
     } else {
-      delete options.headers?.Authorization
+      delete config.headers?.Authorization
     }
 
     return config
@@ -94,8 +94,8 @@ const axiosModule = {
     try {
       let response = await instance(options)
       return Promise.resolve(response.data)
-    } catch {
-      console.log('error occurred')
+    } catch (error) {
+      return Promise.reject(error)
     }
   }
 }
