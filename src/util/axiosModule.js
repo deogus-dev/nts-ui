@@ -33,8 +33,10 @@ const refreshToken = async () => {
 
     return Promise.resolve(response.data.accessToken)
   } catch (error) {
-    console.log('reissue failed')
-    return Promise.reject(error)
+    alert('로그인 세션이 만료되었습니다.\r\n로그인 페이지로 이동합니다.')
+    useAuthStore().clearToken()
+    location.href = '/'
+    // return Promise.reject(error)
   }
 }
 
@@ -43,7 +45,7 @@ instance.interceptors.request.use(
     if (!config.url.startsWith('/member')) {
       _.merge(config, {
         headers: {
-          Authorization: 'Bearer ' + useAuthStore().accessToken
+          Authorization: /* useAuthStore().grantType */ 'Bearer ' + useAuthStore().accessToken
         }
       })
     } else {

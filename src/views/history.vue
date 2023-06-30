@@ -19,6 +19,23 @@ const getAttendList = () => {
     })
 }
 
+const exportExcel = () => {
+  window.open(
+    `http://localhost:8080/attend/export/${month.value.substring(0, 4)}/${month.value.substring(
+      5,
+      7
+    )}`
+  )
+  //   lib
+  //     .api({
+  //       url: `/attend/export/${month.value.substring(0, 4)}/${month.value.substring(5, 7)}`,
+  //       method: 'get'
+  //     })
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+}
+
 watchEffect(() => {
   getAttendList()
 })
@@ -29,13 +46,19 @@ watchEffect(() => {
 </script>
 
 <template>
-  <h1>history</h1>
   <p>month : <input type="date" v-model="month" /></p>
-  <ul>
-    <li v-for="(item, index) in attendList" :key="index">
-      <p>attendDate : {{ item.attendDate }}</p>
-      <p>inTime : {{ $filters.timeFormat(item.inTime) }}</p>
-      <p>outTime : {{ $filters.timeFormat(item.outTime) }}</p>
-    </li>
-  </ul>
+  <div v-if="attendList.length != 0">
+    <ul>
+      <li v-for="(item, index) in attendList" :key="index">
+        <p>attendDate : {{ item.attendDate }}</p>
+        <p>출근시간 : {{ $filters.timeFormat(item.inTime) }}</p>
+        <p>퇴근시간 : {{ $filters.timeFormat(item.outTime) }}</p>
+        <p>총 근무시간 : {{ $filters.timeFormat(item.workTime) }}</p>
+      </li>
+    </ul>
+    <button @click="exportExcel">엑셀 출력</button>
+  </div>
+  <div v-else>
+    <h2>{{ month.substring(0, 7) }} 근무기록이 없습니다.</h2>
+  </div>
 </template>

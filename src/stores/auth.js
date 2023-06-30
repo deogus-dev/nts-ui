@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', {
       delete this.refreshToken
     },
     isLogin() {
-      if (this.at) return true
+      if (localStorage.getItem('accessToken')) return true
       else return false
     }
   },

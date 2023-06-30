@@ -1,4 +1,7 @@
 api로부터 송,수신 데이터 as-is는 string인데 
 in_time, out_time 등 datetime으로 사용하기 위한 확인
 
-로그인 시 at, userid 포함
+store 값 새로고침해도 유지되도록 플러그인 추가
+
+로딩바 추가
+
