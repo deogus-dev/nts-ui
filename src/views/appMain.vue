@@ -68,7 +68,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- <p>{{ store.getUserNm }}</p> -->
+  <p>
+    <span class="fw-bold">{{ store.getUserNm }}</span
+    >님 환영합니다.
+  </p>
   <p>현재시간 : {{ currentTime }}</p>
   <p>출근시간 : {{ $filters.timeFormat(attendInfo.inTime) }}</p>
   <p>퇴근시간 : {{ $filters.timeFormat(attendInfo.outTime) }}</p>
@@ -80,3 +83,9 @@ onUnmounted(() => {
   </button>
   <kakaoMap @setLocationInfo="setLocationInfo" />
 </template>
+
+<style>
+.fw-bold {
+  font-weight: bold;
+}
+</style>

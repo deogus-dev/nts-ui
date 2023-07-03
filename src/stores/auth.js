@@ -1,18 +1,24 @@
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({}),
+  state: () => ({
+    grantType: null,
+    accessToken: null,
+    refreshToken: null,
+    userId: null,
+    userNm: null
+  }),
   actions: {
     loadToken() {
-      let at, rt
-      at = localStorage.getItem('accessToken')
-      rt = localStorage.getItem('refreshToken')
-
-      this.accessToken = at
-      this.refreshToken = rt
+      this.grantType = localStorage.getItem('grantType')
+      this.accessToken = localStorage.getItem('accessToken')
+      this.refreshToken = localStorage.getItem('refreshToken')
+      this.userId = localStorage.getItem('userId')
+      this.userNm = localStorage.getItem('userNm')
     },
     saveToken({ grantType, accessToken, refreshToken }) {
       if (grantType) {
+        localStorage.setItem('grantType', grantType)
         this.grantType = grantType
       }
       if (accessToken) {
@@ -25,9 +31,13 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     saveMember({ id, name }) {
-      this.member = {
-        id: id,
-        name: name
+      if (id) {
+        localStorage.setItem('userId', id)
+        this.userId = id
+      }
+      if (name) {
+        localStorage.setItem('userNm', name)
+        this.userNm = name
       }
     },
     clearToken() {
@@ -42,7 +52,7 @@ export const useAuthStore = defineStore('auth', {
   },
   getters: {
     getUserNm(state) {
-      return state.member.name
+      return state.userNm
     }
   }
 })

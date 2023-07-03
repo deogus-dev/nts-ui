@@ -86,7 +86,7 @@ const signup = () => {
   if (valid('password', member.password)) {
     lib
       .api({
-        url: '/member/new',
+        url: '/member',
         data: {
           companyCode: 'CP01',
           contact: '010-1111-2222',

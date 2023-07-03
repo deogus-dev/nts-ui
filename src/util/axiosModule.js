@@ -25,7 +25,7 @@ const instance = axios.create({
 
 const refreshToken = async () => {
   try {
-    const response = await axios.post('/api/member/reissue', {
+    const response = await axios.post('/api/reissue', {
       refreshToken: useAuthStore().refreshToken
     })
 
@@ -42,14 +42,22 @@ const refreshToken = async () => {
 
 instance.interceptors.request.use(
   (config) => {
-    if (!config.url.startsWith('/member')) {
+    if (
+      !config.url.startsWith('/member') &&
+      config.url != '/login' &&
+      config.url != '/logout' &&
+      config.url != '/reissue'
+    ) {
       _.merge(config, {
         headers: {
-          Authorization: /* useAuthStore().grantType */ 'Bearer ' + useAuthStore().accessToken
+          // Authorization: /* useAuthStore().grantType */ 'Bearer ' + useAuthStore().accessToken
+          Authorization: useAuthStore().grantType + ' ' + useAuthStore().accessToken,
+          userId: useAuthStore().userId
         }
       })
     } else {
       delete config.headers?.Authorization
+      delete config.headers?.userId
     }
 
     return config
@@ -69,7 +77,7 @@ instance.interceptors.response.use(
     if (error.response.data.status === 401) {
       const retryOriginalRequest = new Promise((resolve) => {
         addRefreshSubscriber((accessToken) => {
-          originalRequest.headers.Authorization = 'Bearer ' + accessToken
+          originalRequest.headers.Authorization = useAuthStore().grantType + ' ' + accessToken
           resolve(axios(originalRequest))
         })
       })
@@ -97,6 +105,7 @@ const axiosModule = {
       let response = await instance(options)
       return Promise.resolve(response.data)
     } catch (error) {
+      console.log('error', error)
       return Promise.reject(error)
     }
   }
