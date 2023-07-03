@@ -23,5 +23,5 @@ export default defineConfig({
     }
   },
   lintOnSave: false,
-  base: '/nts-ui'
+  publicPath: '/nts-ui/'
 })
