@@ -27,5 +27,5 @@ export default defineConfig({
     outDir: 'dist'
   },
   outputDir: 'dist',
-  base: '/nts-ui'
+  base: '/'
 })
