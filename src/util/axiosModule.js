@@ -105,7 +105,7 @@ const axiosModule = {
       let response = await instance(options)
       return Promise.resolve(response.data)
     } catch (error) {
-      console.log('[Exception]', error)
+      console.log('%c[Exception]', 'background:red', error)
       return Promise.reject(error)
     }
   }
