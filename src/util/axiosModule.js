@@ -42,6 +42,7 @@ const refreshToken = async () => {
 
 instance.interceptors.request.use(
   (config) => {
+    console.log('%c[config]', 'background:pink', config)
     if (
       !config.url.startsWith('/member') &&
       config.url != '/login' &&
@@ -63,6 +64,7 @@ instance.interceptors.request.use(
     return config
   },
   (error) => {
+    console.log('%c[config]', 'background:orange', error)
     return Promise.reject(error)
   }
 )
@@ -103,7 +105,7 @@ const axiosModule = {
   async api(options) {
     try {
       let response = await instance(options)
-      console.log('%cresponse', 'background:pink', response)
+
       return Promise.resolve(response.data)
     } catch (error) {
       console.log('%c[Exception]', 'background:red', error)
