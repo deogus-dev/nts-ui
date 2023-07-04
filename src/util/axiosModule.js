@@ -103,6 +103,7 @@ const axiosModule = {
   async api(options) {
     try {
       let response = await instance(options)
+      console.log('%cresponse', 'background:pink', response)
       return Promise.resolve(response.data)
     } catch (error) {
       console.log('%c[Exception]', 'background:red', error)
