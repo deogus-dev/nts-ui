@@ -1,5 +1,12 @@
-<script setup></script>
+<script setup>
+import { computed } from 'vue'
+
+const profile = computed(() => {
+  return import.meta.env.VITE_APP_API_URL
+})
+</script>
 <template>
+  <p>API URL : [{{ profile }}]</p>
   <router-view v-slot="{ Component, route }">
     <transition name="slide-fade" mode="out-in">
       <div :key="route?.name" class="Im-root-element">
