@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import _ from 'lodash'
 
 export const useCmnStore = defineStore('cmn', {
   state: () => ({
@@ -39,6 +40,10 @@ export const useCmnStore = defineStore('cmn', {
     },
     closeModal(type) {
       this.modal[type] = false
+    },
+    modalAllClose() {
+      _.mapValues(this.modal, () => null)
+      console.log(this.modal)
     }
   },
   getters: {

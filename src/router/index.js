@@ -7,6 +7,8 @@ import auth from '~/router/auth'
 import cmn from '~/router/cmn'
 import exam from '~/router/exam'
 
+import { useCmnStore } from '~/stores/cmn'
+
 const routes = [...auth, ...cmn, ...exam]
 
 routes.push({
@@ -30,6 +32,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.chkLogin && store.isLogin()) {
     router.push('/main')
   }
+
+  useCmnStore().modalAllClose()
+
   next()
 })
 
