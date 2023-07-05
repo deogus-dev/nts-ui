@@ -103,7 +103,7 @@ a {
 }
 
 .index-container {
-  background-image: url("../image/main_clock.png");
+  background-image: url('../image/main_clock.png');
   background-repeat: no-repeat;
   background-position: 80% 50%;
   background-color: #4d5dfa;
@@ -226,7 +226,7 @@ a {
 }
 
 .attend-history-btn {
-  background-image: url("../image/phone_color.png");
+  background-image: url('../image/phone_color.png');
   background-repeat: no-repeat;
   background-position: 100% 50%;
   background-color: #ead5fa;
@@ -291,4 +291,9 @@ a {
   /* identical to box height */
 
   color: #222222;
+}
+
+.halfModal {
+  height: 50%;
+  background: red;
 }

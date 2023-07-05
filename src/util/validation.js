@@ -12,7 +12,7 @@ const valid = (type, target) => {
     return false
   }
 
-  if (!regx[type].test(target)) {
+  if (regx[type] && !regx[type].test(target)) {
     alert(constants[type] + ' 형식이 올바르지 않습니다!')
     return false
   }
