@@ -16,12 +16,7 @@ const routes = [
         name: 'history',
         component: () => import('~/views/history.vue')
       },
-      {
-        // 휴가신청
-        path: 'holyday',
-        name: 'holyday',
-        component: () => import('~/views/holyday.vue')
-      },
+
       {
         // 마이페이지
         path: 'myPage',

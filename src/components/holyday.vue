@@ -14,7 +14,7 @@ const holyType = computed(() => {
 
 watchEffect(() => {
   if (data.code === 'AT06') {
-    if (moment(data.from) > moment(data.to)) {
+    if (data.to && moment(data.from) > moment(data.to)) {
       alert('시작일이 종료일보다 이전일 수 없습니다!')
       delete data.to
     }

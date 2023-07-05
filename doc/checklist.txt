@@ -7,3 +7,5 @@ store 값 새로고침해도 유지되도록 플러그인 추가
 
 로딩바 추가
 
+jvm 옵션
+mail.username=deogus.gsitm@gmail.com;mail.password=sueqauhzjzygvjte;jwt.key=c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK;db.username=nts;db.password=111111;cors.allowed-origins=http://localhost:7889/
