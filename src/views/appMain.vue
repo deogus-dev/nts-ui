@@ -5,8 +5,10 @@ import _ from 'lodash'
 import kakaoMap from '~/components/kakaoMap.vue'
 import lib from '~/util/axiosModule'
 import { useAuthStore } from '~/stores/auth'
+import { useCmnStore } from '~/stores/cmn'
 
-const store = useAuthStore()
+const authStore = useAuthStore()
+const cmnStore = useCmnStore()
 const attendInfo = reactive({})
 
 const currentTime = ref(moment().format('YYYY-MM-DD HH:mm:ss'))
@@ -17,6 +19,10 @@ let timer = setInterval(() => {
 const locationInfo = reactive({})
 const setLocationInfo = (param) => {
   _.merge(locationInfo, param)
+}
+
+const openMap = () => {
+  cmnStore.openModal('kakao')
 }
 
 const getAttendInfo = () => {
@@ -69,7 +75,7 @@ onUnmounted(() => {
 
 <template>
   <p>
-    <span class="fw-bold">{{ store.getUserNm }}</span
+    <span class="fw-bold">{{ authStore.getUserNm }}</span
     >님 환영합니다.
   </p>
   <p>현재시간 : {{ currentTime }}</p>
@@ -81,7 +87,12 @@ onUnmounted(() => {
   >
     {{ attendStatus.txt }}
   </button>
-  <kakaoMap @setLocationInfo="setLocationInfo" />
+
+  <router-link :to="{ name: 'history' }">나의 출퇴근기록</router-link>
+  <transition name="slideup-fade">
+    <kakaoMap v-if="cmnStore.modal.kakao" @setLocationInfo="setLocationInfo" />
+  </transition>
+  <button @click="openMap">내 현재 위치 보기</button>
 </template>
 
 <style>

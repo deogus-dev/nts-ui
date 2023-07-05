@@ -1,6 +1,9 @@
 <script setup>
 import { reactive, watch, onMounted, onUnmounted } from 'vue'
 import lib from '~/util/axiosModule'
+import { useCmnStore } from '~/stores/cmn'
+
+const cmnStore = useCmnStore()
 
 const emit = defineEmits()
 var map, marker, interval
@@ -135,7 +138,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="map"></div>
+  <div>
+    <button @click="cmnStore.closeModal('kakao')">close</button>
+    <div id="map" class="fullModal"></div>
+  </div>
 </template>
 
 <style>

@@ -42,7 +42,6 @@ const refreshToken = async () => {
 
 instance.interceptors.request.use(
   (config) => {
-    console.log('%c[config]', 'background:pink', config)
     if (
       !config.url.startsWith('/member') &&
       config.url != '/login' &&

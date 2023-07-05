@@ -12,3 +12,18 @@
   transform: translateX(-10px);
   opacity: 0;
 }
+
+.slideup-fade-enter {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.slideup-fade-enter-active,
+.slideup-fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.slideup-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
