@@ -42,7 +42,7 @@ export const useCmnStore = defineStore('cmn', {
       this.modal[type] = false
     },
     modalAllClose() {
-      _.mapValues(this.modal, () => null)
+      _.mapValues(this.modal, null)
       console.log(this.modal)
     }
   },
