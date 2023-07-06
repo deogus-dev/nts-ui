@@ -44,15 +44,15 @@ export const useAuthStore = defineStore('auth', {
       localStorage.clear()
       delete this.accessToken
       delete this.refreshToken
-    },
-    isLogin() {
-      if (localStorage.getItem('accessToken')) return true
-      else return false
     }
   },
   getters: {
     getUserNm(state) {
       return state.userNm
+    },
+    isLogin() {
+      if (localStorage.getItem('accessToken')) return true
+      else return false
     }
   }
 })

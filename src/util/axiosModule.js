@@ -1,6 +1,7 @@
 import axios from 'axios'
 import _ from 'lodash'
 import { useAuthStore } from '~/stores/auth'
+import { useCmnStore } from '../stores/cmn'
 
 // 다중 요청 대응 코드 추가
 let isTokenRefreshing = false
@@ -42,6 +43,7 @@ const refreshToken = async () => {
 
 instance.interceptors.request.use(
   (config) => {
+    useCmnStore().showLoading()
     if (
       !config.url.startsWith('/member') &&
       config.url != '/login' &&
@@ -70,9 +72,11 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
+    useCmnStore().hideLoading()
     return response
   },
   async (error) => {
+    useCmnStore().hideLoading()
     const originalRequest = error.config
 
     if (error.response.data.status === 401) {

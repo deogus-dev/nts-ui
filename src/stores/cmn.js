@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 export const useCmnStore = defineStore('cmn', {
   state: () => ({
+    loading: false,
     modal: {
       full: false,
       half: false,
@@ -35,6 +36,14 @@ export const useCmnStore = defineStore('cmn', {
     }
   }),
   actions: {
+    showLoading() {
+      this.loading = true
+    },
+    hideLoading() {
+      setTimeout(() => {
+        this.loading = false
+      }, 500)
+    },
     openModal(type) {
       this.modal[type] = true
     },
@@ -53,6 +62,9 @@ export const useCmnStore = defineStore('cmn', {
   getters: {
     getCmnCode: (state) => (type) => {
       return state.cmnCode[type]
+    },
+    isLoading(state) {
+      return this.loading
     }
   }
 })
