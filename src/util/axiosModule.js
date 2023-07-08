@@ -36,7 +36,7 @@ const refreshToken = async () => {
   } catch (error) {
     alert('로그인 세션이 만료되었습니다.\r\n로그인 페이지로 이동합니다.')
     useAuthStore().clearToken()
-    location.href = '/'
+    location.href = '/nts-ui'
     // return Promise.reject(error)
   }
 }
