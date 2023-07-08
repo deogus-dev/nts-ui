@@ -30,10 +30,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   useCmnStore().showLoading()
-  if (to.meta.chkLogin && !useAuthStore().isLogin) {
-    alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
-    location.href = '/nts-ui'
-  }
+  // if (to.meta.chkLogin && !useAuthStore().isLogin) {
+  //   alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
+  //   location.href = '/nts-ui'
+  // }
 
   useCmnStore().modalAllClose()
 
