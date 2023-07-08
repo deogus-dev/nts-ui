@@ -76,7 +76,6 @@ instance.interceptors.response.use(
     return response
   },
   async (error) => {
-    useCmnStore().hideLoading()
     const originalRequest = error.config
 
     if (error.response.data.status === 401) {
@@ -99,6 +98,8 @@ instance.interceptors.response.use(
     } else {
       Promise.reject(error)
     }
+
+    useCmnStore().hideLoading()
     return Promise.reject(error)
   }
 )
