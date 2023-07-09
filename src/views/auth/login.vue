@@ -53,21 +53,10 @@ const getApi = () => {
 
 const postApi = () => {
   axios
-    .post(
-      'https://www.ninetosixapi.tk/login',
-      {
-        email: 'it1485@gsitm.com',
-        password: '1'
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
-        }
-      }
-    )
+    .post('https://www.ninetosixapi.tk/login', {
+      email: 'it1485@gsitm.com',
+      password: '1'
+    })
     .then((res) => {
       console.log('post Method resp', res)
     })
