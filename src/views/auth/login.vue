@@ -31,14 +31,18 @@ const login = () => {
 
 const getApi = () => {
   axios
-    .get('https://www.ninetosixapi.tk/codes', {
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
+    .get(
+      'https://www.ninetosixapi.tk/codes',
+      { params: {} },
+      {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
+        }
       }
-    })
+    )
     .then((res) => {
       console.log('get Method resp', res)
     })
@@ -48,7 +52,7 @@ const getApi = () => {
 }
 
 const postApi = () => {
-  axios
+  let axios = axios
     .post(
       'https://www.ninetosixapi.tk/login',
       {
@@ -70,6 +74,8 @@ const postApi = () => {
     .catch((error) => {
       console.log('post Method error', error)
     })
+
+  console.log('[axios]', axios)
 }
 </script>
 <template>
