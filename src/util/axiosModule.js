@@ -18,7 +18,9 @@ const addRefreshSubscriber = (callback) => {
 const instance = axios.create({
   baseURL: '/api',
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
+    'Content-Type': 'application/json;charset=UTF-8',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*'
   },
   method: 'get',
   timeout: 60000

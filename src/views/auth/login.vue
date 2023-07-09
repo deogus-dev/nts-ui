@@ -15,6 +15,7 @@ const login = () => {
     lib
       .api({
         url: '/login',
+        method: 'post',
         data: {
           email: userInfo.email,
           password: userInfo.userPw
