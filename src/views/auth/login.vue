@@ -16,7 +16,6 @@ const login = () => {
     lib
       .api({
         url: '/login',
-        method: 'post',
         data: {
           email: userInfo.email,
           password: userInfo.userPw
@@ -36,8 +35,10 @@ const getApi = () => {
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
+      },
+      withCredentials: true
     })
     .then((res) => {
       console.log('get Method resp', res)
@@ -59,9 +60,11 @@ const postApi = () => {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*'
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
         }
-      }
+      },
+      { withCredentials: true }
     )
     .then((res) => {
       console.log('post Method resp', res)
