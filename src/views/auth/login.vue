@@ -31,9 +31,14 @@ const login = () => {
 }
 
 const getApi = () => {
-  axios.get('https://www.ninetosixapi.tk/codes').then((res) => {
-    console.log('get Method resp', res)
-  })
+  axios
+    .get('https://www.ninetosixapi.tk/codes')
+    .then((res) => {
+      console.log('get Method resp', res)
+    })
+    .catch((error) => {
+      console.log('get Method error', error)
+    })
 }
 
 const postApi = () => {
@@ -44,6 +49,9 @@ const postApi = () => {
     })
     .then((res) => {
       console.log('post Method resp', res)
+    })
+    .catch((error) => {
+      console.log('post Method error', error)
     })
 }
 </script>
