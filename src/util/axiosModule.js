@@ -47,6 +47,7 @@ const refreshToken = async () => {
 
 instance.interceptors.request.use(
   (config) => {
+    console.log('api config', config)
     useCmnStore().showLoading()
     if (
       !config.url.startsWith('/member') &&
