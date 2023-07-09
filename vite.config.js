@@ -24,7 +24,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: process.env.VITE_APP_API_URL,
-        changeOrigin: false,
+        changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }

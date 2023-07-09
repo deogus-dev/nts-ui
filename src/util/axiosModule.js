@@ -113,6 +113,7 @@ const axiosModule = {
       return Promise.resolve(response.data)
     } catch (error) {
       console.log('%c[Exception]', 'background:red', error)
+      alert(error)
       return Promise.reject(error)
     }
   }
