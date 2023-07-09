@@ -4,6 +4,7 @@ import lib from '~/util/axiosModule'
 import { useAuthStore } from '~/stores/auth'
 import { useRouter } from 'vue-router'
 import valid from '~/util/validation'
+import axios from 'axios'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -28,9 +29,28 @@ const login = () => {
       })
   }
 }
+
+const getApi = () => {
+  axios.get('https://www.ninetosixapi.tk/codes').then((res) => {
+    console.log('get Method resp', res)
+  })
+}
+
+const postApi = () => {
+  axios
+    .post('https://www.ninetosixapi.tk/login', {
+      email: 'it1485@gsitm.com',
+      password: '1'
+    })
+    .then((res) => {
+      console.log('post Method resp', res)
+    })
+}
 </script>
 <template>
   <input type="text" placeholder="ID" v-model="userInfo.email" />
   <input type="password" placeholder="PASSWORD" v-model="userInfo.userPw" />
   <button @click="login">Login</button>
+  <button @click="getApi">get Api Test</button>
+  <button @click="postApi">post Api Test</button>
 </template>
