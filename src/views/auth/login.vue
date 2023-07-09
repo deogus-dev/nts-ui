@@ -52,7 +52,7 @@ const getApi = () => {
 }
 
 const postApi = () => {
-  let axios = axios
+  let axiostest = axios
     .post(
       'https://www.ninetosixapi.tk/login',
       {
@@ -75,7 +75,7 @@ const postApi = () => {
       console.log('post Method error', error)
     })
 
-  console.log('[axios]', axios)
+  console.log('[axios]', axiostest)
 }
 </script>
 <template>
