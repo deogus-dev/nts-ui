@@ -37,8 +37,7 @@ const getApi = () => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
-      },
-      withCredentials: true
+      }
     })
     .then((res) => {
       console.log('get Method resp', res)
@@ -63,8 +62,7 @@ const postApi = () => {
           'Access-Control-Allow-Headers': '*',
           'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
         }
-      },
-      { withCredentials: true }
+      }
     )
     .then((res) => {
       console.log('post Method resp', res)
