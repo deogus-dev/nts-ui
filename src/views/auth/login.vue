@@ -32,7 +32,7 @@ const login = () => {
 const getApi = () => {
   axios
     .get(
-      'https://www.ninetosixapi.tk/codes',
+      '/codes',
       { params: {} },
       {
         headers: {
