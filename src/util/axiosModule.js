@@ -19,7 +19,7 @@ const instance = axios.create({
   baseURL: '/api',
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
-    'Access-Control-Allow-Origin': 'https://www.ninetosixapi.tk',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
   },
