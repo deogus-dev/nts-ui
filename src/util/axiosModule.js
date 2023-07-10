@@ -18,7 +18,10 @@ const addRefreshSubscriber = (callback) => {
 const instance = axios.create({
   baseURL: '/api',
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
+    'Content-Type': 'application/json;charset=UTF-8',
+    'Access-Control-Allow-Origin': 'https://www.ninetosixapi.tk',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
   },
   method: 'post',
   timeout: 60000
@@ -77,7 +80,6 @@ instance.interceptors.response.use(
     return response
   },
   async (error) => {
-    console.log('response error', error)
     const originalRequest = error.config
 
     if (error.response.data.status === 401) {
