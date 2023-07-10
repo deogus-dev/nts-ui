@@ -10,6 +10,10 @@ const authStore = useAuthStore()
 const router = useRouter()
 const userInfo = reactive({})
 
+axios.interceptors.request.use((config) => {
+  console.log('api sample config', config)
+})
+
 const login = () => {
   authStore.clearToken()
   if (valid('email', userInfo?.email)) {
@@ -63,10 +67,6 @@ const postApi = () => {
     .catch((error) => {
       console.log('post Method error', error)
     })
-
-  axios.interceptors.request.use((config) => {
-    console.log('api sample config', config)
-  })
 }
 </script>
 <template>
