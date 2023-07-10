@@ -63,6 +63,10 @@ const postApi = () => {
     .catch((error) => {
       console.log('post Method error', error)
     })
+
+  axios.interceptors.request.use((config) => {
+    console.log('api sample config', config)
+  })
 }
 </script>
 <template>
