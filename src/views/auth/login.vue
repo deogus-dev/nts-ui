@@ -64,7 +64,7 @@ const postApi = () => {
       console.log('post Method error', error)
     })
 }
-;() => {
+;(() => {
   console.log('get method test')
   lib
     .api({
@@ -74,7 +74,7 @@ const postApi = () => {
     .then((res) => {
       console.log('codes res', res)
     })
-}
+})()
 </script>
 <template>
   <input type="text" placeholder="ID" v-model="userInfo.email" />
