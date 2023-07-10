@@ -77,6 +77,7 @@ instance.interceptors.response.use(
     return response
   },
   async (error) => {
+    console.log('response error', error)
     const originalRequest = error.config
 
     if (error.response.data.status === 401) {
