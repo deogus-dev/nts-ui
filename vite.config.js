@@ -21,13 +21,7 @@ dotenvExpand.expand(
 export default defineConfig({
   server: {
     port: 7889,
-    proxy: {
-      '/api': {
-        target: process.env.VITE_APP_API_URL,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+    proxy: process.env.VITE_APP_API_URL
   },
   plugins: [vue()],
   resolve: {

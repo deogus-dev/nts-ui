@@ -53,7 +53,7 @@ const getApi = () => {
 
 const postApi = () => {
   axios
-    .post('/api/login', {
+    .post('/login', {
       email: 'it1485@gsitm.com',
       password: '1'
     })
