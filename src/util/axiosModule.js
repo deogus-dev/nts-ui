@@ -18,12 +18,8 @@ const addRefreshSubscriber = (callback) => {
 const instance = axios.create({
   baseURL: '/api',
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
+    'Content-Type': 'application/json;charset=UTF-8'
   },
-  withCredentials: true, // 쿠키 cors 통신 설정
   method: 'post',
   timeout: 60000
 })
