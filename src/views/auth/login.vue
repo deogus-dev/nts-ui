@@ -32,7 +32,7 @@ const login = () => {
 const getApi = () => {
   axios
     .get(
-      '/codes',
+      '/api/codes',
       { params: {} },
       {
         headers: {
@@ -53,7 +53,7 @@ const getApi = () => {
 
 const postApi = () => {
   axios
-    .post('/login', {
+    .post('/api/login', {
       email: 'it1485@gsitm.com',
       password: '1'
     })
