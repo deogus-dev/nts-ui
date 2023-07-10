@@ -53,7 +53,7 @@ const getApi = () => {
 
 const postApi = () => {
   axios
-    .post('https://www.ninetosixapi.tk/login', {
+    .post('/api/login', {
       email: 'it1485@gsitm.com',
       password: '1'
     })
@@ -64,17 +64,6 @@ const postApi = () => {
       console.log('post Method error', error)
     })
 }
-;(() => {
-  console.log('get method test')
-  lib
-    .api({
-      url: '/codes',
-      method: 'get'
-    })
-    .then((res) => {
-      console.log('codes res', res)
-    })
-})()
 </script>
 <template>
   <input type="text" placeholder="ID" v-model="userInfo.email" />
