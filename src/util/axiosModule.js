@@ -16,7 +16,7 @@ const addRefreshSubscriber = (callback) => {
 }
 
 const instance = axios.create({
-  baseURL: 'https://www.ninetosixapi.tk',
+  baseURL: import.meta.env.VITE_APP_API_URL,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     'Access-Control-Allow-Origin': '*',
@@ -27,9 +27,11 @@ const instance = axios.create({
   timeout: 60000
 })
 
+import.meta.env.VITE_APP_API_URL
+
 const refreshToken = async () => {
   try {
-    const response = await axios.post('https://www.ninetosixapi.tk/reissue', {
+    const response = await axios.post(`${import.meta.env.VITE_APP_API_URL}/reissue`, {
       refreshToken: useAuthStore().refreshToken
     })
 
