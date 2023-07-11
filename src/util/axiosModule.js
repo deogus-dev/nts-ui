@@ -16,7 +16,7 @@ const addRefreshSubscriber = (callback) => {
 }
 
 const instance = axios.create({
-  baseURL: 'https://www.ninetosixapi.tk/api',
+  baseURL: 'https://www.ninetosixapi.tk',
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     'Access-Control-Allow-Origin': '*',
@@ -29,7 +29,7 @@ const instance = axios.create({
 
 const refreshToken = async () => {
   try {
-    const response = await axios.post('/api/reissue', {
+    const response = await axios.post('https://www.ninetosixapi.tk/reissue', {
       refreshToken: useAuthStore().refreshToken
     })
 
