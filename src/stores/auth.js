@@ -50,9 +50,13 @@ export const useAuthStore = defineStore('auth', {
     getUserNm(state) {
       return state.userNm
     },
-    isLogin() {
-      if (localStorage.getItem('accessToken')) return true
-      else return false
+    isLogin(state) {
+      const lcat = localStorage.getItem('accessToken')
+      return lcat
+
+      // console.log('authstore is login', !!state.userId)
+      // console.log('localstorage at is?', !!localStorage.getItem('accessToken'))
+      // return !!state.userId && !!localStorage.getItem('accessToken')
     }
   }
 })

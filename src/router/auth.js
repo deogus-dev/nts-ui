@@ -11,19 +11,13 @@ const routes = [
       {
         // 앱 초기화면
         path: '',
-        component: index,
-        meta: {
-          chkLogin: true
-        }
+        component: index
       },
       {
         //로그인
         path: 'login',
         name: '로그인',
-        component: login,
-        meta: {
-          chkLogin: true
-        }
+        component: login
       },
       {
         // 회원가입
@@ -31,7 +25,10 @@ const routes = [
         name: '회원가입',
         component: signup
       }
-    ]
+    ],
+    meta: {
+      chkLogin: false
+    }
   }
 ]
 

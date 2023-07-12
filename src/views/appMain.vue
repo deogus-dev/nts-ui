@@ -92,7 +92,7 @@ onUnmounted(() => {
   <transition name="slideup-fade">
     <kakaoMap v-if="cmnStore.modal.kakao" @setLocationInfo="setLocationInfo" />
   </transition>
-  <button @click="openMap">내 현재 위치 보기</button>
+  <button @click="openMap" v-if="!cmnStore.modal.kakao">내 현재 위치 보기</button>
 </template>
 
 <style>

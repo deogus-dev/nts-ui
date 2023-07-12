@@ -28,12 +28,16 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   useCmnStore().showLoading()
-  // if (to.meta.chkLogin && !useAuthStore().isLogin) {
-  //   alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
-  //   location.href = '/nts-ui/'
-  // }
+
+  console.log('chkLogin page?', to.meta?.chkLogin)
+  console.log('islogin?', useAuthStore().isLogin)
+
+  if (to.meta?.chkLogin && !useAuthStore().isLogin) {
+    alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
+    location.href = '/nts-ui/'
+  }
 
   useCmnStore().modalAllClose()
 
