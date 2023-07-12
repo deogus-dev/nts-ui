@@ -31,6 +31,10 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   useCmnStore().showLoading()
 
+  // if(from.path === '/login' || from.path === '/' || from.path === '/signup'){
+
+  // }
+
   console.log('chkLogin page?', to.meta?.chkLogin)
   console.log('islogin?', useAuthStore().isLogin)
 
