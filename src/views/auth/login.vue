@@ -33,6 +33,4 @@ const login = () => {
   <input type="text" placeholder="ID" v-model="userInfo.email" />
   <input type="password" placeholder="PASSWORD" v-model="userInfo.userPw" />
   <button @click="login">Login</button>
-  <button @click="getApi">get Api Test</button>
-  <button @click="postApi">post Api Test</button>
 </template>
