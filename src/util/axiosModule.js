@@ -2,6 +2,7 @@ import axios from 'axios'
 import _ from 'lodash'
 import { useAuthStore } from '~/stores/auth'
 import { useCmnStore } from '../stores/cmn'
+import { useRouter } from 'vue-router'
 
 // 다중 요청 대응 코드 추가
 let isTokenRefreshing = false
@@ -39,9 +40,9 @@ const refreshToken = async () => {
 
     return Promise.resolve(response.data.accessToken)
   } catch (error) {
-    alert('로그인 세션이 만료되었습니다.\r\n로그인 페이지로 이동합니다.')
+    alert('세션이 만료되었습니다.\r\n로그인 페이지로 이동합니다.')
     useAuthStore().clearToken()
-    // location.href = '/nts-ui'
+    useRouter().push('/')
     // return Promise.reject(error)
   }
 }

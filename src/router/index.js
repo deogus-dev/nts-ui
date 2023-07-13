@@ -8,6 +8,8 @@ import auth from '~/router/auth'
 import cmn from '~/router/cmn'
 import exam from '~/router/exam'
 
+import { useRouter } from 'vue-router'
+
 import { useCmnStore } from '~/stores/cmn'
 
 const routes = [...auth, ...cmn, ...exam]
@@ -40,12 +42,11 @@ router.beforeEach(async (to, from, next) => {
 
   if (to.meta?.chkLogin) {
     if (!useAuthStore().isLogin) {
-      alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
-      location.href = '/nts-ui/'
+      useRouter().push('/')
     }
   } else {
     if (useAuthStore().isLogin) {
-      location.href = '/nts-ui/main'
+      useRouter().push('/main')
     }
   }
 
