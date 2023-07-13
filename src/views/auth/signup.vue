@@ -89,7 +89,7 @@ const signup = () => {
         url: '/member',
         data: {
           companyCode: 'CP01',
-          contact: '010-1111-2222',
+          contact: member.contact,
           email: member.email,
           name: member.name,
           password: member.password,
@@ -97,7 +97,7 @@ const signup = () => {
         }
       })
       .then((res) => {
-        alert('환영합니다. [' + res.data.name + '] 님,\r\n로그인 페이지로 이동합니다.')
+        alert('환영합니다. [' + res.name + '] 님,\r\n로그인 페이지로 이동합니다.')
         router.push('/login')
       })
   }

@@ -3,12 +3,12 @@ import { computed } from 'vue'
 import loading from '~/components/loading.vue'
 import { useCmnStore } from '~/stores/cmn'
 
-const apiUrl = computed(() => {
-  return import.meta.env.VITE_APP_API_URL
+const appEnv = computed(() => {
+  return import.meta.env.VITE_APP_PROFILE
 })
 </script>
 <template>
-  {{ apiUrl }}
+  [Env] : {{ appEnv }}
   <loading v-if="useCmnStore().isLoading" />
   <router-view v-slot="{ Component, route }">
     <transition name="slide-fade" mode="out-in">

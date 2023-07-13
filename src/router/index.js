@@ -31,16 +31,22 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   useCmnStore().showLoading()
 
-  // if(from.path === '/login' || from.path === '/' || from.path === '/signup'){
+  // console.log('beforeEach from path :', from.path)
+  // console.log('beforeEach from meta chkLogin :', !!from.meta?.chkLogin)
+  // console.log('beforeEach to path :', to.path)
+  // console.log('beforeEach to meta chkLogin :', to.meta?.chkLogin)
 
-  // }
+  // console.log('beforeEach is login :', !!useAuthStore().isLogin)
 
-  console.log('chkLogin page?', to.meta?.chkLogin)
-  console.log('islogin?', useAuthStore().isLogin)
-
-  if (to.meta?.chkLogin && !useAuthStore().isLogin) {
-    alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
-    location.href = '/nts-ui/'
+  if (to.meta?.chkLogin) {
+    if (!useAuthStore().isLogin) {
+      alert('로그인 정보가 없습니다. 메인화면으로 돌아갑니다.')
+      location.href = '/nts-ui/'
+    }
+  } else {
+    if (useAuthStore().isLogin) {
+      location.href = '/nts-ui/main'
+    }
   }
 
   useCmnStore().modalAllClose()
@@ -52,6 +58,13 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to, from) => {
   useCmnStore().hideLoading()
+
+  // console.log('afterEach from path :', from.path)
+  // console.log('afterEach from meta chkLogin :', !!from.meta?.chkLogin)
+  // console.log('afterEach to path :', to.path)
+  // console.log('afterEach to meta chkLogin :', to.meta?.chkLogin)
+
+  // console.log('afterEach is login :', !!useAuthStore().isLogin)
 })
 
 export default router

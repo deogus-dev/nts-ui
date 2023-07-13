@@ -21,48 +21,12 @@ const login = () => {
           password: userInfo.userPw
         }
       })
-      .then((res) => {
-        authStore.saveToken(res)
-        authStore.saveMember(res)
+      .then(async (res) => {
+        await authStore.saveToken(res)
+        await authStore.saveMember(res)
         router.push('/main')
       })
   }
-}
-
-const getApi = () => {
-  axios
-    .get(
-      'https://www.ninetosixapi.tk/codes',
-      { params: {} },
-      {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS'
-        }
-      }
-    )
-    .then((res) => {
-      console.log('get Method resp', res)
-    })
-    .catch((error) => {
-      console.log('get Method error', error)
-    })
-}
-
-const postApi = () => {
-  axios
-    .post('https://www.ninetosixapi.tk/login', {
-      email: 'it1485@gsitm.com',
-      password: '1'
-    })
-    .then((res) => {
-      console.log('post Method resp', res)
-    })
-    .catch((error) => {
-      console.log('post Method error', error)
-    })
 }
 </script>
 <template>

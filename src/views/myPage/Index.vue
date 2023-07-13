@@ -15,21 +15,24 @@ const menuList = [
 
 const logout = () => {
   // authStore.clearToken()
-  lib
-    .api({
-      url: '/logout',
-      data: {
-        accessToken: authStore.accessToken
-      }
-    })
-    .then((res) => {
-      authStore.clearToken()
-      console.log('res == ', res)
-    })
+  if (confirm('로그아웃 하시겠습니까?')) {
+    lib
+      .api({
+        url: '/member/logout',
+        data: {
+          accessToken: authStore.accessToken
+        }
+      })
+      .then(() => {
+        authStore.clearToken()
+        router.push('/login')
+      })
+  }
 }
 </script>
 
 <template>
+  <p>{{ authStore.getUserNm }}님 안녕하세요!</p>
   <ul>
     <li v-for="item in menuList">
       <router-link :to="{ name: item.link }">{{ item.name }}</router-link>
