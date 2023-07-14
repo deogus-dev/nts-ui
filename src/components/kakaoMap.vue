@@ -62,7 +62,7 @@ const posCheck = () => {
 const initMap = async () => {
   var container = document.getElementById('map')
   var options = {
-    center: new kakao.maps.LatLng(37.51082, 127.02928),
+    center: new kakao.maps.LatLng(position.lat, position.lng),
     level: 4
   }
   map = new kakao.maps.Map(container, options)
@@ -112,6 +112,13 @@ const initMap = async () => {
 }
 
 onMounted(() => {
+  getCurPos()
+})
+
+onUnmounted(() => {
+  navigator.geolocation.clearWatch(interval)
+})
+;(() => {
   if (!window.kakao || !window.kakao.maps) {
     const script = document.createElement('script')
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
@@ -124,16 +131,6 @@ onMounted(() => {
   } else {
     initMap()
   }
-})
-
-onUnmounted(() => {
-  navigator.geolocation.clearWatch(interval)
-})
-;(() => {
-  if (!('geolocation' in navigator)) {
-    return
-  }
-  getCurPos()
 })()
 </script>
 

@@ -7,3 +7,6 @@ mail.username=deogus.gsitm@gmail.com;mail.password=sueqauhzjzygvjte;jwt.key=c3By
 
 
 회원가입시 존재하는 id 검증?
+
+현재위치 고정값 변경
+reissue 확인

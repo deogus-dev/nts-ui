@@ -2,7 +2,7 @@ import axios from 'axios'
 import _ from 'lodash'
 import { useAuthStore } from '~/stores/auth'
 import { useCmnStore } from '../stores/cmn'
-import { useRouter } from 'vue-router'
+import router from '~/router'
 
 // 다중 요청 대응 코드 추가
 let isTokenRefreshing = false
@@ -42,7 +42,7 @@ const refreshToken = async () => {
   } catch (error) {
     alert('세션이 만료되었습니다.\r\n로그인 페이지로 이동합니다.')
     useAuthStore().clearToken()
-    useRouter().push('/')
+    router.push('/')
     // return Promise.reject(error)
   }
 }
