@@ -8,9 +8,9 @@ const appEnv = computed(() => {
 })
 </script>
 <template>
-  [Env] : {{ appEnv }}
+  <span style="position: fixed; right: 0; margin: 10px">[Env] : {{ appEnv }}</span>
   <loading v-if="useCmnStore().isLoading" />
-  <router-view v-slot="{ Component, route }">
+  <router-view v-slot="{ Component, route }" class="container">
     <transition name="slide-fade" mode="out-in">
       <div :key="route?.name">
         <component :is="Component"></component>

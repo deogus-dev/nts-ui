@@ -4,7 +4,6 @@ import lib from '~/util/axiosModule'
 import { useAuthStore } from '~/stores/auth'
 import { useRouter } from 'vue-router'
 import valid from '~/util/validation'
-import axios from 'axios'
 
 const authStore = useAuthStore()
 const router = useRouter()
