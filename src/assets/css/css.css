@@ -1,0 +1,23 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body,
+html {
+  margin: 0;
+  height: 100%;
+  font-family: Poppins-Regular, sans-serif;
+  border: 1px solid red;
+}
+
+/**/
+.container {
+  padding: 10px 20px;
+  background: red;
+  height: 100%;
+}
+/**/

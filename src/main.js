@@ -7,6 +7,7 @@ import { useAuthStore } from '~/stores/auth'
 // import 'bootstrap'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import '~/assets/main.css'
+// import '~/assets/css/css.css'
 import '~/assets/css/font.css'
 import '~/assets/css/transition.css'
 
