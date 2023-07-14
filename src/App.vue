@@ -10,8 +10,8 @@ const appEnv = computed(() => {
 <template>
   <span style="position: fixed; right: 0; margin: 10px">[Env] : {{ appEnv }}</span>
   <loading v-if="useCmnStore().isLoading" />
-  <router-view v-slot="{ Component, route }" class="container">
-    <transition name="slide-fade" mode="out-in">
+  <router-view v-slot="{ Component, route }">
+    <transition name="slide-fade" mode="out-in" class="h-100">
       <div :key="route?.name">
         <component :is="Component"></component>
       </div>

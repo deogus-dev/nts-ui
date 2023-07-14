@@ -17,7 +17,14 @@ html {
 /**/
 .container {
   padding: 10px 20px;
-  background: red;
+  background: lightcyan;
   height: 100%;
+}
+
+.index {
+  background-image: url('@/assets/image/main_clock.png');
+  background-repeat: no-repeat;
+  background-position: 80% 50%;
+  background-color: #4d5dfa;
 }
 /**/
